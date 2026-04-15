@@ -1,0 +1,23 @@
+{
+  "status": "Bootstrap conversion in progress",
+  "completed": [
+    "menu/index.blade.php",
+    "menu/create.blade.php",
+    "menu/edit.blade.php",
+    "menu/show.blade.php",
+    "orders/index.blade.php",
+    "profile/edit.blade.php",
+    "Dashboard",
+    "Navigation"
+  ],
+  "remaining": [
+    "orders/create.blade.php",
+    "orders/edit.blade.php",
+    "orders/show.blade.php",
+    "payments/index.blade.php",
+    "payments/create.blade.php",
+    "payments/edit.blade.php",
+    "payments/show.blade.php"
+  ],
+  "summary": "Replacement from Tailwind CSS to Bootstrap 5 with custom brand colors"
+}

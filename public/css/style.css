@@ -1,0 +1,473 @@
+/* Brand Color Variables */
+:root {
+    --brand-primary: #182c0c;
+    --brand-primary-light: #2a4615;
+    --brand-secondary: #696761;
+    --brand-secondary-light: #8a8178;
+    --brand-dark: #342825;
+    --brand-dark-light: #4a3a2f;
+    --brand-accent: #b6a337;
+    --brand-accent-light: #c9b85c;
+    --brand-light: #b9a480;
+    --brand-light-light: #cbb9a5;
+}
+
+/* Brand Primary Colors */
+.bg-brand-primary {
+    background-color: var(--brand-primary) !important;
+}
+
+.bg-brand-primary-light {
+    background-color: var(--brand-primary-light) !important;
+}
+
+.text-brand-primary {
+    color: var(--brand-primary) !important;
+}
+
+.btn-brand-primary {
+    background-color: var(--brand-primary);
+    color: white;
+    border-color: var(--brand-primary);
+}
+
+.btn-brand-primary:hover {
+    background-color: var(--brand-primary-light);
+    color: white;
+    border-color: var(--brand-primary-light);
+}
+
+.btn-brand-primary:active, 
+.btn-brand-primary.active {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+
+/* Brand Secondary Colors */
+.bg-brand-secondary {
+    background-color: var(--brand-secondary) !important;
+}
+
+.bg-brand-secondary-light {
+    background-color: var(--brand-secondary-light) !important;
+}
+
+.text-brand-secondary {
+    color: var(--brand-secondary) !important;
+}
+
+.btn-brand-secondary {
+    background-color: var(--brand-secondary);
+    color: white;
+    border-color: var(--brand-secondary);
+}
+
+.btn-brand-secondary:hover {
+    background-color: var(--brand-secondary-light);
+    color: white;
+    border-color: var(--brand-secondary-light);
+}
+
+/* Brand Dark Colors */
+.bg-brand-dark {
+    background-color: var(--brand-dark) !important;
+}
+
+.bg-brand-dark-light {
+    background-color: var(--brand-dark-light) !important;
+}
+
+.text-brand-dark {
+    color: var(--brand-dark) !important;
+}
+
+/* Brand Accent Colors */
+.bg-brand-accent {
+    background-color: var(--brand-accent) !important;
+}
+
+.bg-brand-accent-light {
+    background-color: var(--brand-accent-light) !important;
+}
+
+.text-brand-accent {
+    color: var(--brand-accent) !important;
+}
+
+.btn-brand-accent {
+    background-color: var(--brand-accent);
+    color: white;
+    border-color: var(--brand-accent);
+}
+
+.btn-brand-accent:hover {
+    background-color: var(--brand-accent-light);
+    color: white;
+    border-color: var(--brand-accent-light);
+}
+
+/* Brand Light Colors */
+.bg-brand-light {
+    background-color: var(--brand-light) !important;
+}
+
+.bg-brand-light-light {
+    background-color: var(--brand-light-light) !important;
+}
+
+.text-brand-light {
+    color: var(--brand-light) !important;
+}
+
+/* Opacity Utilities */
+.bg-brand-primary-10 {
+    background-color: rgba(24, 44, 12, 0.1) !important;
+}
+
+.bg-brand-primary-20 {
+    background-color: rgba(24, 44, 12, 0.2) !important;
+}
+
+.bg-brand-accent-10 {
+    background-color: rgba(182, 163, 55, 0.1) !important;
+}
+
+.bg-brand-accent-20 {
+    background-color: rgba(182, 163, 55, 0.2) !important;
+}
+
+.bg-brand-accent-30 {
+    background-color: rgba(182, 163, 55, 0.3) !important;
+}
+
+.bg-brand-secondary-10 {
+    background-color: rgba(105, 103, 97, 0.1) !important;
+}
+
+.bg-brand-secondary-20 {
+    background-color: rgba(105, 103, 97, 0.2) !important;
+}
+
+.bg-brand-secondary-30 {
+    background-color: rgba(105, 103, 97, 0.3) !important;
+}
+
+.bg-brand-light-10 {
+    background-color: rgba(185, 164, 128, 0.1) !important;
+}
+
+.bg-brand-light-20 {
+    background-color: rgba(185, 164, 128, 0.2) !important;
+}
+
+/* Border Utilities */
+.border-brand-primary {
+    border-color: var(--brand-primary) !important;
+}
+
+.border-brand-secondary {
+    border-color: var(--brand-secondary) !important;
+}
+
+.border-brand-dark {
+    border-color: var(--brand-dark) !important;
+}
+
+.border-brand-accent {
+    border-color: var(--brand-accent) !important;
+}
+
+.border-brand-light {
+    border-color: var(--brand-light) !important;
+}
+
+.border-top-brand-primary {
+    border-top: 4px solid var(--brand-primary) !important;
+}
+
+.border-top-brand-accent {
+    border-top: 4px solid var(--brand-accent) !important;
+}
+
+.border-bottom-brand-accent {
+    border-bottom: 2px solid var(--brand-accent) !important;
+}
+
+/* Form Controls */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 0 0.2rem rgba(182, 163, 55, 0.25);
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+    border-color: var(--brand-secondary);
+    box-shadow: 0 0 0 0.2rem rgba(105, 103, 97, 0.25);
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-light) 100%) !important;
+}
+
+.navbar .nav-link {
+    color: var(--brand-light) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--brand-accent) !important;
+}
+
+.navbar .nav-link.active {
+    color: var(--brand-accent) !important;
+    font-weight: 600;
+}
+
+/* Badge Styles */
+.badge-brand-primary {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+.badge-brand-accent {
+    background-color: var(--brand-accent);
+    color: white;
+}
+
+.badge-brand-secondary {
+    background-color: var(--brand-secondary);
+    color: white;
+}
+
+.badge-brand-light {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+}
+
+/* Status Badges */
+.status-completed {
+    background-color: rgba(182, 163, 55, 0.2);
+    color: var(--brand-accent);
+    border-left: 4px solid var(--brand-accent);
+}
+
+.status-pending {
+    background-color: rgba(24, 44, 12, 0.1);
+    color: var(--brand-primary);
+    border-left: 4px solid var(--brand-primary);
+}
+
+.status-paid {
+    background-color: rgba(182, 163, 55, 0.3);
+    color: var(--brand-accent);
+    border-left: 4px solid var(--brand-accent);
+}
+
+.status-unpaid {
+    background-color: rgba(105, 103, 97, 0.2);
+    color: var(--brand-secondary);
+    border-left: 4px solid var(--brand-secondary);
+}
+
+/* Card Styles */
+.card {
+    border-color: var(--brand-light);
+}
+
+.card-header {
+    background-color: var(--brand-primary-10);
+    border-bottom-color: var(--brand-light);
+    color: var(--brand-dark);
+    font-weight: 600;
+}
+
+/* Alert Styles */
+.alert-brand-accent {
+    background-color: rgba(182, 163, 55, 0.1);
+    border-color: var(--brand-accent);
+    color: var(--brand-dark);
+}
+
+.alert-brand-secondary {
+    background-color: rgba(105, 103, 97, 0.1);
+    border-color: var(--brand-secondary);
+    color: var(--brand-dark);
+}
+
+/* Table Styles */
+.table {
+    color: var(--brand-light-light);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--brand-light-10);
+}
+
+.table thead {
+    background-color: var(--brand-light-20);
+    border-color: var(--brand-light);
+}
+
+.table thead th {
+    color: var(--brand-dark);
+    font-weight: 600;
+    border-bottom-color: var(--brand-light);
+}
+
+.table td, .table th {
+    border-color: var(--brand-light);
+}
+
+/* Dashboard Styles */
+.stat-card {
+    border-left: 4px solid var(--brand-primary);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(24, 44, 12, 0.15);
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    color: var(--brand-primary);
+    font-weight: 700;
+}
+
+/* Link Styles */
+a.text-brand-primary,
+a.text-brand-primary-light {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a.text-brand-primary:hover {
+    color: var(--brand-primary-light);
+}
+
+a.text-brand-accent:hover {
+    color: var(--brand-accent-light);
+}
+
+/* Input Group */
+.input-group-text {
+    background-color: var(--brand-light-10);
+    border-color: var(--brand-light);
+    color: var(--brand-dark);
+}
+
+/* Dropdown */
+.dropdown-menu {
+    border-color: var(--brand-light);
+}
+
+.dropdown-item {
+    color: var(--brand-dark);
+}
+
+.dropdown-item:hover {
+    background-color: var(--brand-light-20);
+    color: var(--brand-primary);
+}
+
+.dropdown-item.active {
+    background-color: var(--brand-primary);
+}
+
+/* Model & Overlay */
+.modal-header {
+    background-color: var(--brand-primary);
+    border-bottom-color: var(--brand-light);
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    color: var(--brand-light-light);
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--brand-primary);
+    border-color: var(--brand-light);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--brand-light-10);
+    border-color: var(--brand-accent);
+    color: var(--brand-accent);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+
+/* Utility Spacing with Brand */
+.py-6 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.px-6 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+
+/* Display Classes */
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Transition */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Dark Mode Compatibility */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--brand-dark-light);
+        color: var(--brand-light);
+    }
+
+    .card {
+        background-color: #fff5ef;
+        color: var(--brand-light);
+    }
+
+    .form-control, 
+    .form-select {
+        background-color: #dec4b9;
+        color: var(--brand-dark);
+        border-color: var(--brand-dark);
+    }
+
+    .table {
+        color: var(--brand-light);
+    }
+
+    .table thead th {
+        color: var(--brand-light);
+        background-color: var(--brand-light-light);
+    }
+
+    .navbar .dropdown-menu {
+        background-color: #2c2420;
+    }
+
+    .navbar .dropdown-item {
+        color: var(--brand-light);
+    }
+
+    .navbar .dropdown-item:hover {
+        background-color: var(--brand-dark-light);
+        color: var(--brand-accent);
+    }
+}
