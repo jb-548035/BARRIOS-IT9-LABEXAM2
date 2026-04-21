@@ -1,0 +1,202 @@
+Rice Sales Management System - Laravel MVC Architecture
+
+1. Overview
+
+This Laravel application is built to manage a small rice-selling business. It supports:
+- user authentication and secure access control,
+- rice product management (menu),
+- order creation and tracking,
+- payment processing and payment history.
+
+The system follows Laravel MVC conventions, using routes to connect HTTP requests to controllers, controllers to handle business logic, models to represent database entities, and Blade templates to render views.
+
+2. Authentication / Login Module
+
+Files / Components:
+- routes/auth.php
+- routes/web.php
+- Laravel auth controllers under App\Http\Controllers\Auth
+- Blade templates under resources/views/auth (login, register, password reset, etc.)
+
+Functionality:
+- Users log in with email and password.
+- Laravel authentication middleware validates credentials and establishes a session.
+- Access to the dashboard and all management pages is restricted by the `auth` middleware.
+- The `dashboard` route also uses `verified` middleware to require email verification for access.
+- Users can securely log out via Laravel session handling.
+
+Flow:
+- Visitor accesses `/login`.
+- AuthenticatedSessionController handles credential validation.
+- If successful, the session is created and the user can access protected pages.
+- Protected routes are grouped in `routes/web.php` under `Route::middleware('auth')->group(...)`.
+
+3. Rice Menu Management Module
+
+Files / Components:
+- app/Http/Controllers/RiceItemController.php
+- app/Models/RiceItem.php
+- database/migrations/2026_04_14_122558_create_rice_items_table.php
+- Blade views: resources/views/menu/index.blade.php, create.blade.php, edit.blade.php, show.blade.php
+
+Model and Database:
+- `rice_items` table fields: `id`, `name`, `price_per_kg`, `stock_quantity`, `description`, `is_available`, timestamps.
+- RiceItem model casts numeric fields and availability, and defines `orderItems()` relationship.
+- Scopes and helpers: `available()`, `isInStock()`, `reduceStock()`.
+
+Controller Actions (CRUD):
+- index(): loads all rice products ordered by name and returns `menu.index`.
+- create(): returns `menu.create` to display the add form.
+- store(): validates input, builds the rice item data, saves it, then redirects to the rice menu listing.
+- show(): returns details of a rice product.
+- edit(): returns `menu.edit` with the selected rice item.
+- update(): validates changes, updates the rice item, and redirects back to the list.
+- destroy(): deletes a rice item and redirects to the list.
+
+CRUD Flow:
+- Add: access `/menu/create`, fill rice name, price, stock, description, availability, submit.
+- View: access `/menu`, see table of rice items with price and stock.
+- Edit: click edit on a row, modify fields, save changes.
+- Delete: submit delete form from the menu list.
+
+4. Order Management Module
+
+Files / Components:
+- app/Http/Controllers/OrderController.php
+- app/Models/Order.php
+- app/Models/OrderItem.php
+- database/migrations/2026_04_14_122606_create_orders_table.php
+- Blade views: resources/views/orders/index.blade.php, create.blade.php, edit.blade.php, show.blade.php
+
+Model and Database:
+- `orders` table fields: `id`, `order_number`, `user_id`, `customer_name`, `customer_phone`, `customer_address`, `total_amount`, `status`, `notes`, timestamps.
+- `order_items` table fields: `id`, `order_id`, `rice_item_id`, `quantity_kg`, `price_per_kg`, `subtotal`, timestamps.
+- Order model relationships: belongsTo `User`, hasMany `OrderItem`, hasOne `Payment`.
+- OrderItem model belongsTo `Order` and belongsTo `RiceItem`.
+- Order generates unique order numbers via `generateOrderNumber()`.
+
+Controller Actions:
+- index(): lists all orders with related order items and payment info.
+- create(): shows new order form and passes available rice items.
+- store(): validates the selected rice item and quantity, checks stock, computes subtotal, creates the order, saves the order item, reduces rice stock, redirects back.
+- show(): loads a single order and displays details.
+- edit(): loads an order for editing its customer info and status.
+- update(): validates and updates order fields such as customer details and status.
+- destroy(): deletes an order and its related order items via cascading foreign key constraints.
+
+Order Creation Flow:
+- Admin chooses a rice item from available stock.
+- Inputs quantity in kilograms and customer details.
+- The controller multiplies `quantity × price_per_kg` to compute `total_amount` and `subtotal`.
+- An Order record is created with `pending` status.
+- A related OrderItem record is created with rice item reference and pricing details.
+- Rice stock is decremented by the ordered quantity.
+
+5. Payment Management Module
+
+Files / Components:
+- app/Http/Controllers/PaymentController.php
+- app/Models/Payment.php
+- database/migrations/2026_04_14_122613_create_payments_table.php
+- Blade views: resources/views/payments/index.blade.php, create.blade.php, edit.blade.php, show.blade.php
+
+Model and Database:
+- `payments` table fields: `id`, `payment_number`, `order_id`, `amount_paid`, `change_amount`, `payment_method`, `status`, `reference_number`, `notes`, `paid_at`, timestamps.
+- Payment model belongsTo `Order` and defines helper methods for number generation and label formatting.
+
+Controller Actions:
+- index(): displays payment history with linked orders.
+- create(): shows available orders for payment selection, including pending or confirmed orders.
+- store(): validates payment fields, checks order status, computes change, assigns payment status, creates payment record, and updates order status.
+- show(): displays details for a recorded payment.
+- edit(): loads payment for modification and order selection.
+- update(): validates and updates payment information, recalculates status and order state.
+- destroy(): deletes payment records.
+
+Payment Flow:
+- Admin selects an order that is pending or confirmed.
+- Enters amount paid and selects a payment method.
+- The system records the amount paid and calculates change.
+- Payment status is set to `paid`, `partial`, or `unpaid`.
+- If fully paid, the related order status becomes `completed`.
+- If partially paid, the order becomes `confirmed`.
+
+6. MVC Architecture and Linkage
+
+Models:
+- `App\Models\RiceItem` stores product data.
+- `App\Models\Order` stores order header data.
+- `App\Models\OrderItem` stores order line items.
+- `App\Models\Payment` stores payment records.
+- `App\Models\User` stores authenticated admins/users.
+
+Controllers:
+- `RiceItemController` handles rice CRUD operations.
+- `OrderController` handles order creation, display, update, and deletion.
+- `PaymentController` handles payment recording, status updates, and history.
+
+Views:
+- Blade templates under `resources/views/menu`, `resources/views/orders`, and `resources/views/payments` render forms and tables.
+- `resources/views/dashboard.blade.php` provides an admin home summary.
+- `resources/views/welcome.blade.php` is the public landing page.
+
+Routes:
+- `routes/web.php` defines the main app routes.
+- Resource routes map standard CRUD actions automatically:
+  - `Route::resource('menu', RiceItemController::class)`
+  - `Route::resource('orders', OrderController::class)`
+  - `Route::resource('payments', PaymentController::class)`
+- All management endpoints are protected with `auth` middleware.
+
+Interaction Flow:
+- User visits the public landing page `/`.
+- To manage the system, they log in via `/login`.
+- After authentication, they can access `/dashboard` and the resource pages.
+- When a route is requested, Laravel resolves it to a controller action.
+- Controllers interact with models and database tables using Eloquent.
+- Controllers return Blade views or redirect responses.
+- Views render data passed from controllers.
+
+7. Data Relationships
+
+- `RiceItem` has many `OrderItem` records.
+- `Order` has many `OrderItem` records and one `Payment`.
+- `OrderItem` belongs to an `Order` and a `RiceItem`.
+- `Payment` belongs to an `Order`.
+- `Order` belongs to a `User`.
+
+8. System Responsibilities by Module
+
+Login Module:
+- Validate user credentials.
+- Protect application pages.
+- Manage sessions and logout.
+
+Rice Menu Management:
+- Add rice products.
+- Edit product details.
+- View all available products.
+- Delete products.
+- Store price, stock, description, availability.
+
+Order Management:
+- Create new orders from available rice products.
+- Input customer data and quantity.
+- Automatically calculate order totals.
+- Display order details and status.
+- Update or delete orders.
+
+Payment Management:
+- Record payments against orders.
+- Track payment amount, method, reference, and notes.
+- Update order status when payment is completed or partial.
+- Show payment history.
+
+9. Summary
+
+This system is a centralized Laravel application for managing rice products, orders, and payments. The MVC architecture ensures separation of concerns:
+- Models manage data and business rules.
+- Controllers manage request logic and use models.
+- Views render the user interface.
+
+Authentication is built on Laravel’s standard auth system, while resource controllers and Blade templates deliver the CRUD operations for rice menu, orders, and payments.

@@ -13,7 +13,7 @@
         </div>
 
         <!-- Quick Stats Grid -->
-        <div class="row g-4 mb-5">
+        <div class="row g-3 mb-4">
             <!-- Total Orders -->
             <div class="col-md-6 col-lg-3">
                 <div class="card stat-card shadow-sm h-100">
@@ -88,9 +88,7 @@
             <div class="col-md-6 col-lg-3">
                 <a href="{{ route('menu.index') }}" class="card text-decoration-none h-100 shadow-sm transition-all" style="border-left: 4px solid var(--brand-primary);">
                     <div class="card-body">
-                        <p class="fw-semibold text-brand-dark mb-2">Menu Items</p>
-                        <p class="h4 text-brand-primary mb-0 fw-bold">{{ \App\Models\Rice::count() }}</p>
-                    </div>
+                        <p class="fw-semibold text-brand-dark mb-2">Menu Items</p>                    </div>
                 </a>
             </div>
             
@@ -114,8 +112,8 @@
             
             <div class="col-md-6 col-lg-3">
                 <a href="{{ route('menu.create') }}" class="card text-decoration-none h-100 shadow-sm transition-all btn-brand-primary" style="border: none;">
-                    <div class="card-body text-white">
-                        <p class="fw-semibold mb-2">Add Menu Item</p>
+                    <div class="card-body text-yellow">
+                        <p class="fw-semibold mb-2">Add Rice Item</p>
                         <p class="small mb-0 opacity-90">Create a new product</p>
                     </div>
                 </a>

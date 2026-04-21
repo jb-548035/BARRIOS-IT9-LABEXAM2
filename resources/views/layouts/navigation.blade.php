@@ -2,7 +2,7 @@
     <div class="container-lg">
         <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}" style="color: var(--brand-light) !important;">
             <x-application-logo class="d-inline-block align-text-top" style="height: 2rem; fill: var(--brand-light);" />
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'XTRA RICE') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
