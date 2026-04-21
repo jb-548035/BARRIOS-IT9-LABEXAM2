@@ -19,5 +19,8 @@
         "sass": "^1.99.0",
         "tailwindcss": "^4.2.3",
         "vite": "^7.0.7"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.2.3"
     }
 }

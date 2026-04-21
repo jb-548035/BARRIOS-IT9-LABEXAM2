@@ -1,19 +1,15 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import path from 'path'; // 1. Import path
+import tailwindcss from '@tailwindcss/vite'; // 1. Add this import
+import path from 'path';
 
 export default defineConfig({
     plugins: [
+        tailwindcss(), // 2. Add the plugin here
         laravel({
             input: ['resources/scss/app.scss', 'resources/js/app.js'],
             refresh: true,
         }),
     ],
-    resolve: {
-        alias: {
-            // 2. Add this alias to point to the node_modules folder
-            'bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
-            '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
-        },
-    },
+    // ... keep your resolve/alias section as is
 });
