@@ -45,7 +45,7 @@ COPY . .
 # Install PHP dependencies 
 RUN composer install --no-dev --optimize-autoloader --no-interaction 
 # Install frontend dependencies and build assets 
-RUN npm install && npm run build 
+RUN npm install --include=dev && npm run build
 RUN php artisan config:clear \ 
 && php artisan route:clear \ 
 && php artisan view:clear 
